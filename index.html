@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Wedding Journey - February 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,190 +14,430 @@
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 50%, #e1bee7 100%);
+            background: linear-gradient(180deg, #faf8f5 0%, #f5f0eb 100%);
             min-height: 100vh;
             padding: 20px;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .header {
             text-align: center;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
+            padding: 50px 20px 40px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(253,249,245,0.95) 100%);
+            border-radius: 2px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 30px rgba(180, 160, 140, 0.12);
+            border: 1px solid rgba(200, 180, 160, 0.2);
+            position: relative;
+        }
+
+        .header::before,
+        .header::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c9a87c, transparent);
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .header::after {
+            top: auto;
+            bottom: 20px;
         }
 
         .header h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.5rem;
-            color: #c2185b;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: #8b7355;
             margin-bottom: 10px;
+            letter-spacing: 0.08em;
         }
 
         .header p {
-            color: #666;
-            font-size: 1.1rem;
+            color: #a89080;
+            font-size: 0.95rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
         }
 
-        .heart-divider {
+        .calendar {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 2px;
+            box-shadow: 0 4px 30px rgba(180, 160, 140, 0.12);
+            border: 1px solid rgba(200, 180, 160, 0.2);
+            overflow: hidden;
+        }
+
+        .calendar-header {
+            background: linear-gradient(135deg, #8b7355 0%, #a08060 100%);
+            color: #fff;
+            padding: 25px;
             text-align: center;
-            font-size: 1.5rem;
-            color: #e91e63;
-            margin: 20px 0;
         }
 
-        .timeline {
-            position: relative;
-            padding: 20px 0;
+        .calendar-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
         }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(to bottom, #e91e63, #9c27b0);
-            border-radius: 3px;
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
         }
 
-        .event {
-            display: flex;
-            justify-content: flex-end;
-            padding: 10px 40px 10px 0;
-            position: relative;
-            width: 50%;
-        }
-
-        .event:nth-child(odd) {
-            align-self: flex-end;
-            justify-content: flex-start;
-            padding: 10px 0 10px 40px;
-            margin-left: 50%;
-        }
-
-        .event-content {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            max-width: 350px;
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .event-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .event-content::before {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            background: #e91e63;
-            border: 3px solid #fff;
-            border-radius: 50%;
-            top: 25px;
-        }
-
-        .event:nth-child(even) .event-content::before {
-            right: -48px;
-        }
-
-        .event:nth-child(odd) .event-content::before {
-            left: -48px;
-        }
-
-        .event-date {
+        .day-header {
+            padding: 18px 8px;
+            text-align: center;
+            font-size: 0.85rem;
             font-weight: 500;
-            color: #c2185b;
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            color: #8b7355;
+            background: rgba(201, 168, 124, 0.1);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
-        .event-title {
-            font-size: 1.1rem;
-            color: #333;
-            margin-bottom: 5px;
+        .day-header.sun {
+            color: #c9a87c;
+        }
+
+        .day-cell {
+            min-height: 170px;
+            padding: 15px;
+            border: 1px solid rgba(200, 180, 160, 0.15);
+            background: #fff;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .day-cell:hover {
+            background: rgba(253, 249, 245, 1);
+        }
+
+        .day-cell.empty {
+            background: rgba(250, 248, 245, 0.3);
+            border-color: rgba(200, 180, 160, 0.08);
+        }
+
+        .day-cell.has-event {
+            background: linear-gradient(135deg, #fffcf8 0%, #fdf8f2 100%);
+        }
+
+        .day-cell.wedding-day {
+            background: linear-gradient(135deg, #fdf5eb 0%, #f8ead8 100%);
+            border: 2px solid #c9a87c;
+        }
+
+        .day-number {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #8b7355;
+            margin-bottom: 10px;
+        }
+
+        .day-cell.sun .day-number {
+            color: #c9a87c;
+        }
+
+        .event-tag {
+            font-size: 0.85rem;
+            padding: 6px 10px;
+            margin-bottom: 6px;
+            border-radius: 3px;
+            background: rgba(201, 168, 124, 0.15);
+            color: #6a5a4a;
+            display: block;
+            line-height: 1.5;
+        }
+
+        .event-tag.flight {
+            background: rgba(100, 149, 237, 0.15);
+            color: #4a6a8a;
+        }
+
+        .event-tag.official {
+            background: rgba(201, 168, 124, 0.2);
+            color: #5a4a3a;
+        }
+
+        .event-tag.stay {
+            background: rgba(144, 180, 148, 0.2);
+            color: #4a6a4a;
+        }
+
+        .event-tag.wedding {
+            background: linear-gradient(135deg, #c9a87c, #b8977a);
+            color: #fff;
+            font-weight: 500;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+
+        .event-tag.festival {
+            background: rgba(180, 130, 180, 0.15);
+            color: #6a4a6a;
         }
 
         .event-detail {
-            font-size: 0.85rem;
-            color: #777;
-        }
-
-        .event.highlight .event-content {
-            background: linear-gradient(135deg, #fce4ec, #f8bbd9);
-            border: 2px solid #e91e63;
-        }
-
-        .event.highlight .event-content::before {
-            background: #ff4081;
-            width: 20px;
-            height: 20px;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 64, 129, 0.4); }
-            50% { box-shadow: 0 0 0 10px rgba(255, 64, 129, 0); }
-        }
-
-        .wedding-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #e91e63, #9c27b0);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
             font-size: 0.8rem;
-            margin-top: 10px;
+            color: #a09080;
+            margin-top: 6px;
         }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 25px;
+            background: rgba(250, 248, 245, 0.8);
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: #8b7355;
+        }
+
+        .legend-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 2px;
+        }
+
+        .legend-color.flight { background: rgba(100, 149, 237, 0.4); }
+        .legend-color.official { background: rgba(201, 168, 124, 0.4); }
+        .legend-color.stay { background: rgba(144, 180, 148, 0.4); }
+        .legend-color.wedding { background: linear-gradient(135deg, #c9a87c, #b8977a); }
+        .legend-color.festival { background: rgba(180, 130, 180, 0.3); }
 
         .footer {
             text-align: center;
-            padding: 30px;
-            color: #666;
-            font-size: 0.9rem;
+            padding: 40px 30px;
+            color: #b8a898;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
         }
 
-        .icon {
-            margin-right: 5px;
+        /* 태블릿 (1024px 이하) */
+        @media (max-width: 1024px) {
+            .container {
+                max-width: 100%;
+                padding: 0 10px;
+            }
+
+            .day-cell {
+                min-height: 150px;
+                padding: 12px;
+            }
+
+            .day-number {
+                font-size: 1.05rem;
+            }
+
+            .event-tag {
+                font-size: 0.8rem;
+                padding: 5px 8px;
+            }
         }
 
+        /* 모바일 가로 (768px 이하) */
         @media (max-width: 768px) {
-            .timeline::before {
-                left: 20px;
+            body {
+                padding: 15px;
             }
 
-            .event,
-            .event:nth-child(odd) {
-                width: 100%;
-                margin-left: 0;
-                padding: 10px 10px 10px 50px;
-                justify-content: flex-start;
-            }
-
-            .event-content::before,
-            .event:nth-child(even) .event-content::before,
-            .event:nth-child(odd) .event-content::before {
-                left: -40px;
-                right: auto;
+            .header {
+                padding: 35px 15px 30px;
+                margin-bottom: 20px;
             }
 
             .header h1 {
-                font-size: 2.5rem;
+                font-size: 2.4rem;
+            }
+
+            .header p {
+                font-size: 0.85rem;
+            }
+
+            .calendar-header {
+                padding: 18px;
+            }
+
+            .calendar-header h2 {
+                font-size: 1.6rem;
+            }
+
+            .day-header {
+                padding: 12px 4px;
+                font-size: 0.7rem;
+            }
+
+            .day-cell {
+                min-height: 120px;
+                padding: 8px;
+            }
+
+            .day-number {
+                font-size: 0.95rem;
+                margin-bottom: 6px;
+            }
+
+            .event-tag {
+                font-size: 0.7rem;
+                padding: 4px 6px;
+                margin-bottom: 4px;
+            }
+
+            .event-tag.wedding {
+                padding: 6px;
+                font-size: 0.75rem;
+            }
+
+            .event-detail {
+                font-size: 0.65rem;
+            }
+
+            .legend {
+                gap: 12px;
+                padding: 18px;
+            }
+
+            .legend-item {
+                font-size: 0.75rem;
+            }
+
+            .legend-color {
+                width: 12px;
+                height: 12px;
+            }
+
+            .footer {
+                padding: 30px 20px;
+            }
+        }
+
+        /* 모바일 세로 (480px 이하) */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 30px 15px 25px;
+            }
+
+            .header h1 {
+                font-size: 1.7rem;
+            }
+
+            .header::before,
+            .header::after {
+                width: 40px;
+            }
+
+            .calendar-header {
+                padding: 15px;
+            }
+
+            .calendar-header h2 {
+                font-size: 1.3rem;
+            }
+
+            .day-header {
+                font-size: 0.55rem;
+                padding: 10px 2px;
+                letter-spacing: 0;
+            }
+
+            .day-cell {
+                min-height: 95px;
+                padding: 5px;
+            }
+
+            .day-number {
+                font-size: 0.85rem;
+                margin-bottom: 5px;
+            }
+
+            .event-tag {
+                font-size: 0.55rem;
+                padding: 3px 4px;
+                margin-bottom: 3px;
+                line-height: 1.3;
+            }
+
+            .event-tag.wedding {
+                padding: 5px;
+                font-size: 0.6rem;
+            }
+
+            .event-detail {
+                font-size: 0.5rem;
+                margin-top: 3px;
+            }
+
+            .legend {
+                gap: 8px;
+                padding: 15px 10px;
+            }
+
+            .legend-item {
+                font-size: 0.65rem;
+                gap: 5px;
+            }
+
+            .legend-color {
+                width: 10px;
+                height: 10px;
+            }
+
+            .footer {
+                padding: 25px 15px;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* 아주 작은 화면 (360px 이하) */
+        @media (max-width: 360px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .day-header {
+                font-size: 0.5rem;
+                padding: 8px 1px;
+            }
+
+            .day-cell {
+                min-height: 85px;
+                padding: 4px;
+            }
+
+            .day-number {
+                font-size: 0.8rem;
+            }
+
+            .event-tag {
+                font-size: 0.5rem;
+                padding: 2px 3px;
+            }
+
+            .event-detail {
+                display: none;
             }
         }
     </style>
@@ -205,115 +445,136 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Our Wedding Journey</h1>
-            <p>Germany & Copenhagen, February 2026</p>
-            <div class="heart-divider">&#10084; &#10084; &#10084;</div>
+            <h1>💒 Our Wedding Journey 💒</h1>
+            <p>✈️ Germany & Copenhagen 🇩🇰</p>
         </div>
 
-        <div class="timeline">
-            <!-- 2월 12일 -->
-            <div class="event">
-                <div class="event-content">
-                    <div class="event-date"><span class="icon">&#9992;</span>2월 12일 (목)</div>
-                    <div class="event-title">한국 → 독일 출발</div>
-                    <div class="event-detail">ICN → FRA | 현지 도착 17:20</div>
-                </div>
+        <div class="calendar">
+            <div class="calendar-header">
+                <h2>📅 February 2026</h2>
             </div>
 
-            <!-- 2월 13일 -->
-            <div class="event">
-                <div class="event-content">
-                    <div class="event-date"><span class="icon">&#127970;</span>2월 13일 (금)</div>
-                    <div class="event-title">영사관 방문</div>
-                    <div class="event-detail">11:00 프랑크푸르트</div>
+            <div class="calendar-grid">
+                <!-- 요일 헤더 -->
+                <div class="day-header sun">Sun</div>
+                <div class="day-header">Mon</div>
+                <div class="day-header">Tue</div>
+                <div class="day-header">Wed</div>
+                <div class="day-header">Thu</div>
+                <div class="day-header">Fri</div>
+                <div class="day-header">Sat</div>
+
+                <!-- 1주차: 12(목)~14(토) -->
+                <div class="day-cell empty"></div>
+                <div class="day-cell empty"></div>
+                <div class="day-cell empty"></div>
+                <div class="day-cell empty"></div>
+                <div class="day-cell has-event">
+                    <div class="day-number">12</div>
+                    <span class="event-tag flight">✈️ ICN → FRA</span>
+                    <div class="event-detail">17:20 도착</div>
                 </div>
+                <div class="day-cell has-event">
+                    <div class="day-number">13</div>
+                    <span class="event-tag official">🏛️ 영사관</span>
+                    <div class="event-detail">11:00 Frankfurt</div>
+                </div>
+                <div class="day-cell has-event">
+                    <div class="day-number">14</div>
+                    <span class="event-tag stay">🏠 Frankfurt</span>
+                </div>
+
+                <!-- 2주차: 15(일)~21(토) -->
+                <div class="day-cell sun has-event">
+                    <div class="day-number">15</div>
+                    <span class="event-tag stay">🏠 Remscheid</span>
+                    <div class="event-detail">mit Herr Yoo 👨</div>
+                </div>
+                <div class="day-cell has-event">
+                    <div class="day-number">16</div>
+                    <span class="event-tag festival">🎭 Rosenmontag</span>
+                    <div class="event-detail">카니발 축제 🎉</div>
+                </div>
+                <div class="day-cell has-event">
+                    <div class="day-number">17</div>
+                    <span class="event-tag stay">🏠 Remscheid</span>
+                </div>
+                <div class="day-cell has-event">
+                    <div class="day-number">18</div>
+                    <span class="event-tag stay">🏠 Remscheid</span>
+                </div>
+                <div class="day-cell has-event">
+                    <div class="day-number">19</div>
+                    <span class="event-tag stay">🏠 Remscheid</span>
+                </div>
+                <div class="day-cell has-event">
+                    <div class="day-number">20</div>
+                    <span class="event-tag stay">🏠 Remscheid</span>
+                </div>
+                <div class="day-cell has-event">
+                    <div class="day-number">21</div>
+                    <span class="event-tag stay">🏠 Frankfurt</span>
+                    <div class="event-detail">mit Frau Im 👩</div>
+                </div>
+
+                <!-- 3주차: 22(일)~26(목) -->
+                <div class="day-cell sun has-event">
+                    <div class="day-number">22</div>
+                    <span class="event-tag flight">✈️ → Copenhagen</span>
+                    <div class="event-detail">SK 676 15:15</div>
+                </div>
+                <div class="day-cell has-event">
+                    <div class="day-number">23</div>
+                    <span class="event-tag official">🏛️ 시청 방문</span>
+                    <div class="event-detail">📝 서류 제출</div>
+                </div>
+                <div class="day-cell wedding-day">
+                    <div class="day-number">24</div>
+                    <span class="event-tag wedding">💍 Wedding Day 💕</span>
+                    <div class="event-detail">15:05 👰🤵</div>
+                </div>
+                <div class="day-cell has-event">
+                    <div class="day-number">25</div>
+                    <span class="event-tag official">📜 아포스티유</span>
+                    <span class="event-tag flight">✈️ → Frankfurt</span>
+                </div>
+                <div class="day-cell has-event">
+                    <div class="day-number">26</div>
+                    <span class="event-tag official">🏛️ Eschborn</span>
+                    <span class="event-tag flight">✈️ → ICN 🇰🇷</span>
+                    <div class="event-detail">19:30 귀국!</div>
+                </div>
+                <div class="day-cell empty"></div>
+                <div class="day-cell empty"></div>
             </div>
 
-            <!-- 2월 14-15일 -->
-            <div class="event">
-                <div class="event-content">
-                    <div class="event-date"><span class="icon">&#128663;</span>2월 14-15일</div>
-                    <div class="event-title">Remscheid로 이동</div>
-                    <div class="event-detail">mit Herr Yoo</div>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color flight"></div>
+                    <span>✈️ 항공</span>
                 </div>
-            </div>
-
-            <!-- 2월 16일 -->
-            <div class="event">
-                <div class="event-content">
-                    <div class="event-date"><span class="icon">&#127881;</span>2월 16일 (월)</div>
-                    <div class="event-title">Rosenmontag</div>
-                    <div class="event-detail">독일 카니발 축제</div>
+                <div class="legend-item">
+                    <div class="legend-color official"></div>
+                    <span>🏛️ 공식 일정</span>
                 </div>
-            </div>
-
-            <!-- 2월 17-20일 -->
-            <div class="event">
-                <div class="event-content">
-                    <div class="event-date"><span class="icon">&#127968;</span>2월 17-20일</div>
-                    <div class="event-title">Remscheid 체류</div>
-                    <div class="event-detail">가족과 함께</div>
+                <div class="legend-item">
+                    <div class="legend-color stay"></div>
+                    <span>🏠 체류</span>
                 </div>
-            </div>
-
-            <!-- 2월 21일 -->
-            <div class="event">
-                <div class="event-content">
-                    <div class="event-date"><span class="icon">&#128663;</span>2월 21일 (토)</div>
-                    <div class="event-title">Frankfurt로 이동</div>
-                    <div class="event-detail">mit Frau Im</div>
+                <div class="legend-item">
+                    <div class="legend-color festival"></div>
+                    <span>🎭 축제</span>
                 </div>
-            </div>
-
-            <!-- 2월 22일 -->
-            <div class="event">
-                <div class="event-content">
-                    <div class="event-date"><span class="icon">&#9992;</span>2월 22일 (일)</div>
-                    <div class="event-title">코펜하겐으로 출발</div>
-                    <div class="event-detail">SK 676 | 15:15 출발</div>
-                </div>
-            </div>
-
-            <!-- 2월 23일 -->
-            <div class="event">
-                <div class="event-content">
-                    <div class="event-date"><span class="icon">&#128221;</span>2월 23일 (월)</div>
-                    <div class="event-title">코펜하겐 시청</div>
-                    <div class="event-detail">서류 제출</div>
-                </div>
-            </div>
-
-            <!-- 2월 24일 - 결혼식 -->
-            <div class="event highlight">
-                <div class="event-content">
-                    <div class="event-date"><span class="icon">&#128141;</span>2월 24일 (화)</div>
-                    <div class="event-title">Wedding Day</div>
-                    <div class="event-detail">15:05 결혼식</div>
-                    <span class="wedding-badge">&#128141; THE BIG DAY</span>
-                </div>
-            </div>
-
-            <!-- 2월 25일 -->
-            <div class="event">
-                <div class="event-content">
-                    <div class="event-date"><span class="icon">&#128220;</span>2월 25일 (수)</div>
-                    <div class="event-title">아포스티유 & 이동</div>
-                    <div class="event-detail">09:00 아포스티유 | 18:15 Frankfurt행</div>
-                </div>
-            </div>
-
-            <!-- 2월 26일 -->
-            <div class="event">
-                <div class="event-content">
-                    <div class="event-date"><span class="icon">&#127968;</span>2월 26일 (목)</div>
-                    <div class="event-title">귀국</div>
-                    <div class="event-detail">10:30 Eschborn 시청 | 19:30 한국행</div>
+                <div class="legend-item">
+                    <div class="legend-color wedding"></div>
+                    <span>💍 결혼식</span>
                 </div>
             </div>
         </div>
 
         <div class="footer">
-            <p>Made with &#10084; for our special journey</p>
+            <p>💕 With love, for our journey together 💕</p>
+            <p style="margin-top: 8px; font-size: 0.75rem;">우리의 특별한 여정을 함께해 주세요! 🥂</p>
         </div>
     </div>
 </body>
