@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Wedding Journey - February 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 50%, #e1bee7 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: #c2185b;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .heart-divider {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #e91e63;
+            margin: 20px 0;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, #e91e63, #9c27b0);
+            border-radius: 3px;
+        }
+
+        .event {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 40px 10px 0;
+            position: relative;
+            width: 50%;
+        }
+
+        .event:nth-child(odd) {
+            align-self: flex-end;
+            justify-content: flex-start;
+            padding: 10px 0 10px 40px;
+            margin-left: 50%;
+        }
+
+        .event-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            max-width: 350px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-content::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: #e91e63;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            top: 25px;
+        }
+
+        .event:nth-child(even) .event-content::before {
+            right: -48px;
+        }
+
+        .event:nth-child(odd) .event-content::before {
+            left: -48px;
+        }
+
+        .event-date {
+            font-weight: 500;
+            color: #c2185b;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .event-title {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .event-detail {
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        .event.highlight .event-content {
+            background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+            border: 2px solid #e91e63;
+        }
+
+        .event.highlight .event-content::before {
+            background: #ff4081;
+            width: 20px;
+            height: 20px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 64, 129, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(255, 64, 129, 0); }
+        }
+
+        .wedding-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #e91e63, #9c27b0);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .icon {
+            margin-right: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .event,
+            .event:nth-child(odd) {
+                width: 100%;
+                margin-left: 0;
+                padding: 10px 10px 10px 50px;
+                justify-content: flex-start;
+            }
+
+            .event-content::before,
+            .event:nth-child(even) .event-content::before,
+            .event:nth-child(odd) .event-content::before {
+                left: -40px;
+                right: auto;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Our Wedding Journey</h1>
+            <p>Germany & Copenhagen, February 2026</p>
+            <div class="heart-divider">&#10084; &#10084; &#10084;</div>
+        </div>
+
+        <div class="timeline">
+            <!-- 2월 12일 -->
+            <div class="event">
+                <div class="event-content">
+                    <div class="event-date"><span class="icon">&#9992;</span>2월 12일 (목)</div>
+                    <div class="event-title">한국 → 독일 출발</div>
+                    <div class="event-detail">ICN → FRA | 현지 도착 17:20</div>
+                </div>
+            </div>
+
+            <!-- 2월 13일 -->
+            <div class="event">
+                <div class="event-content">
+                    <div class="event-date"><span class="icon">&#127970;</span>2월 13일 (금)</div>
+                    <div class="event-title">영사관 방문</div>
+                    <div class="event-detail">11:00 프랑크푸르트</div>
+                </div>
+            </div>
+
+            <!-- 2월 14-15일 -->
+            <div class="event">
+                <div class="event-content">
+                    <div class="event-date"><span class="icon">&#128663;</span>2월 14-15일</div>
+                    <div class="event-title">Remscheid로 이동</div>
+                    <div class="event-detail">mit Herr Yoo</div>
+                </div>
+            </div>
+
+            <!-- 2월 16일 -->
+            <div class="event">
+                <div class="event-content">
+                    <div class="event-date"><span class="icon">&#127881;</span>2월 16일 (월)</div>
+                    <div class="event-title">Rosenmontag</div>
+                    <div class="event-detail">독일 카니발 축제</div>
+                </div>
+            </div>
+
+            <!-- 2월 17-20일 -->
+            <div class="event">
+                <div class="event-content">
+                    <div class="event-date"><span class="icon">&#127968;</span>2월 17-20일</div>
+                    <div class="event-title">Remscheid 체류</div>
+                    <div class="event-detail">가족과 함께</div>
+                </div>
+            </div>
+
+            <!-- 2월 21일 -->
+            <div class="event">
+                <div class="event-content">
+                    <div class="event-date"><span class="icon">&#128663;</span>2월 21일 (토)</div>
+                    <div class="event-title">Frankfurt로 이동</div>
+                    <div class="event-detail">mit Frau Im</div>
+                </div>
+            </div>
+
+            <!-- 2월 22일 -->
+            <div class="event">
+                <div class="event-content">
+                    <div class="event-date"><span class="icon">&#9992;</span>2월 22일 (일)</div>
+                    <div class="event-title">코펜하겐으로 출발</div>
+                    <div class="event-detail">SK 676 | 15:15 출발</div>
+                </div>
+            </div>
+
+            <!-- 2월 23일 -->
+            <div class="event">
+                <div class="event-content">
+                    <div class="event-date"><span class="icon">&#128221;</span>2월 23일 (월)</div>
+                    <div class="event-title">코펜하겐 시청</div>
+                    <div class="event-detail">서류 제출</div>
+                </div>
+            </div>
+
+            <!-- 2월 24일 - 결혼식 -->
+            <div class="event highlight">
+                <div class="event-content">
+                    <div class="event-date"><span class="icon">&#128141;</span>2월 24일 (화)</div>
+                    <div class="event-title">Wedding Day</div>
+                    <div class="event-detail">15:05 결혼식</div>
+                    <span class="wedding-badge">&#128141; THE BIG DAY</span>
+                </div>
+            </div>
+
+            <!-- 2월 25일 -->
+            <div class="event">
+                <div class="event-content">
+                    <div class="event-date"><span class="icon">&#128220;</span>2월 25일 (수)</div>
+                    <div class="event-title">아포스티유 & 이동</div>
+                    <div class="event-detail">09:00 아포스티유 | 18:15 Frankfurt행</div>
+                </div>
+            </div>
+
+            <!-- 2월 26일 -->
+            <div class="event">
+                <div class="event-content">
+                    <div class="event-date"><span class="icon">&#127968;</span>2월 26일 (목)</div>
+                    <div class="event-title">귀국</div>
+                    <div class="event-detail">10:30 Eschborn 시청 | 19:30 한국행</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Made with &#10084; for our special journey</p>
+        </div>
+    </div>
+</body>
+</html>
