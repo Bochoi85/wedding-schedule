@@ -1,840 +1,852 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>보영이 & 수진이 혼인신고 여정</title>
-    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-            background: #F5F7FA;
-            min-height: 100vh;
-            color: #1E3A5F;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: #1E3A5F;
-            padding: 80px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/K%C3%B8benhavns_R%C3%A5dhus_2013_%28cropped%29.jpg/1920px-K%C3%B8benhavns_R%C3%A5dhus_2013_%28cropped%29.jpg') center bottom/cover no-repeat;
-            filter: blur(3px);
-            transform: scale(1.05);
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(212, 168, 75, 0.2);
-            color: #D4A84B;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 24px;
-            letter-spacing: 0.05em;
-        }
-
-        .profile-image {
-            position: absolute;
-            left: max(20px, calc(50% - 580px));
-            bottom: 80px;
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: center 30%;
-            border: 4px solid #D4A84B;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #FFFFFF;
-            margin-bottom: 16px;
-            letter-spacing: -0.02em;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 40px;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #D4A84B;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        /* Route Overview */
-        .route-overview {
-            background: #FFFFFF;
-            padding: 40px 20px;
-            border-bottom: 1px solid rgba(30, 58, 95, 0.1);
-        }
-
-        .route-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 28px;
-            flex-wrap: wrap;
-        }
-
-        .route-city {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .city-dot {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: #1E3A5F;
-        }
-
-        .city-dot.highlight {
-            background: #D4A84B;
-            box-shadow: 0 0 0 5px rgba(212, 168, 75, 0.2);
-        }
-
-        .city-name {
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .city-date {
-            font-size: 0.95rem;
-            color: #5A6A7A;
-        }
-
-        .route-arrow {
-            color: #D4A84B;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        /* Main Content */
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        /* City Section */
-        .city-section {
-            margin-bottom: 60px;
-        }
-
-        .city-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid rgba(30, 58, 95, 0.1);
-        }
-
-        .city-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, #1E3A5F, #2C4A6E);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .city-section.wedding .city-icon {
-            background: linear-gradient(135deg, #D4A84B, #C49A3D);
-        }
-
-        .city-info h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #1E3A5F;
-            margin-bottom: 4px;
-        }
-
-        .city-period {
-            font-size: 0.95rem;
-            color: #5A6A7A;
-        }
-
-        /* Schedule Cards */
-        .schedule-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .schedule-card {
-            background: #FFFFFF;
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 2px 12px rgba(30, 58, 95, 0.08);
-            border: 1px solid rgba(30, 58, 95, 0.06);
-            transition: all 0.3s ease;
-        }
-
-        .schedule-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(30, 58, 95, 0.12);
-        }
-
-        .schedule-card.highlight {
-            background: linear-gradient(135deg, #FFFBF0 0%, #FFF8E7 100%);
-            border: 2px solid #D4A84B;
-        }
-
-        .card-date {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .date-day {
-            width: 48px;
-            height: 48px;
-            background: rgba(30, 58, 95, 0.08);
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .schedule-card.highlight .date-day {
-            background: #D4A84B;
-            color: #FFFFFF;
-        }
-
-        .date-num {
-            font-size: 1.2rem;
-            font-weight: 700;
-            line-height: 1;
-        }
-
-        .date-month {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            opacity: 0.7;
-        }
-
-        .date-info {
-            flex: 1;
-        }
-
-        .date-weekday {
-            font-size: 0.8rem;
-            color: #5A6A7A;
-        }
-
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #1E3A5F;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .card-details {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .detail-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-            color: #5A6A7A;
-        }
-
-        .detail-icon {
-            width: 20px;
-            text-align: center;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .tag.flight {
-            background: rgba(30, 58, 95, 0.1);
-            color: #1E3A5F;
-        }
-
-        .tag.official {
-            background: rgba(212, 168, 75, 0.15);
-            color: #8B6914;
-        }
-
-        .tag.event {
-            background: rgba(212, 168, 75, 0.2);
-            color: #8B6914;
-        }
-
-        /* Wedding Highlight */
-        .wedding-banner {
-            background: linear-gradient(135deg, #D4A84B 0%, #C49A3D 100%);
-            color: #1E3A5F;
-            text-align: center;
-            padding: 16px;
-            border-radius: 12px;
-            margin-top: 16px;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        /* Footer */
-        .footer {
-            background: #1E3A5F;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .footer p {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-        }
-
-        .footer-title {
-            color: #D4A84B;
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero {
-                padding: 60px 20px;
-            }
-
-            .profile-image {
-                position: relative;
-                left: auto;
-                bottom: auto;
-                display: block;
-                margin: 0 auto 24px auto;
-                width: 120px;
-                height: 120px;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero-stats {
-                gap: 30px;
-            }
-
-            .stat-number {
-                font-size: 2rem;
-            }
-
-            .route-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .route-arrow {
-                transform: rotate(90deg);
-            }
-
-            .city-header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .schedule-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .main-content {
-                padding: 40px 16px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .city-info h2 {
-                font-size: 1.4rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <img class="profile-image" src="https://raw.githubusercontent.com/Bochoi85/wedding-schedule/main/스크린샷 2026-01-19 오후 3.20.18.png" alt="보영 &amp; 수진">
-        <div class="hero-content">
-            <span class="hero-badge">💒 Wedding Journey 2026</span>
-            <h1>보영이 & 수진이</h1>
-            <p class="hero-subtitle">독일 · 덴마크 혼인신고 여정</p>
-
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number">15</span>
-                    <span class="stat-label">Days</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">3</span>
-                    <span class="stat-label">Cities</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">2</span>
-                    <span class="stat-label">Countries</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Route Overview -->
-    <section class="route-overview">
-        <div class="route-container">
-            <div class="route-city">
-                <div class="city-dot"></div>
-                <div>
-                    <div class="city-name">🇰🇷 Seoul</div>
-                    <div class="city-date">2.12 출발</div>
-                </div>
-            </div>
-            <span class="route-arrow">→</span>
-            <div class="route-city">
-                <div class="city-dot"></div>
-                <div>
-                    <div class="city-name">🇩🇪 Frankfurt</div>
-                    <div class="city-date">2.12-14</div>
-                </div>
-            </div>
-            <span class="route-arrow">→</span>
-            <div class="route-city">
-                <div class="city-dot"></div>
-                <div>
-                    <div class="city-name">🇩🇪 Remscheid</div>
-                    <div class="city-date">2.15-21</div>
-                </div>
-            </div>
-            <span class="route-arrow">→</span>
-            <div class="route-city">
-                <div class="city-dot highlight"></div>
-                <div>
-                    <div class="city-name">🇩🇰 Copenhagen</div>
-                    <div class="city-date">2.22-25 💍</div>
-                </div>
-            </div>
-            <span class="route-arrow">→</span>
-            <div class="route-city">
-                <div class="city-dot"></div>
-                <div>
-                    <div class="city-name">🇰🇷 Seoul</div>
-                    <div class="city-date">2.26 도착</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Frankfurt Section -->
-        <section class="city-section">
-            <div class="city-header">
-                <div class="city-icon">🇩🇪</div>
-                <div class="city-info">
-                    <h2>Frankfurt</h2>
-                    <p class="city-period">2월 12일 - 14일 (3일)</p>
-                </div>
-            </div>
-            <div class="schedule-grid">
-                <div class="schedule-card">
-                    <div class="card-date">
-                        <div class="date-day">
-                            <span class="date-num">12</span>
-                            <span class="date-month">Feb</span>
-                        </div>
-                        <div class="date-info">
-                            <span class="date-weekday">목요일</span>
-                        </div>
-                        <span class="tag flight">✈️ 이동</span>
-                    </div>
-                    <h3 class="card-title">독일 도착</h3>
-                    <div class="card-details">
-                        <div class="detail-item">
-                            <span class="detail-icon">🛫</span>
-                            <span>ICN → FRA</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-icon">🕐</span>
-                            <span>현지 도착 17:20</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="schedule-card">
-                    <div class="card-date">
-                        <div class="date-day">
-                            <span class="date-num">13</span>
-                            <span class="date-month">Feb</span>
-                        </div>
-                        <div class="date-info">
-                            <span class="date-weekday">금요일</span>
-                        </div>
-                        <span class="tag official">🏛️ 공식</span>
-                    </div>
-                    <h3 class="card-title">영사관 방문</h3>
-                    <div class="card-details">
-                        <div class="detail-item">
-                            <span class="detail-icon">📍</span>
-                            <span>프랑크푸르트 영사관</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-icon">🕐</span>
-                            <span>11:00</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="schedule-card">
-                    <div class="card-date">
-                        <div class="date-day">
-                            <span class="date-num">14</span>
-                            <span class="date-month">Feb</span>
-                        </div>
-                        <div class="date-info">
-                            <span class="date-weekday">토요일</span>
-                        </div>
-                    </div>
-                    <h3 class="card-title">💕 발렌타인데이</h3>
-                    <div class="card-details">
-                        <div class="detail-item">
-                            <span class="detail-icon">🏠</span>
-                            <span>Frankfurt 체류</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Remscheid Section -->
-        <section class="city-section">
-            <div class="city-header">
-                <div class="city-icon">🏘️</div>
-                <div class="city-info">
-                    <h2>Remscheid</h2>
-                    <p class="city-period">2월 15일 - 21일 (7일)</p>
-                </div>
-            </div>
-            <div class="schedule-grid">
-                <div class="schedule-card">
-                    <div class="card-date">
-                        <div class="date-day">
-                            <span class="date-num">15</span>
-                            <span class="date-month">Feb</span>
-                        </div>
-                        <div class="date-info">
-                            <span class="date-weekday">일요일</span>
-                        </div>
-                    </div>
-                    <h3 class="card-title">Remscheid 이동</h3>
-                    <div class="card-details">
-                        <div class="detail-item">
-                            <span class="detail-icon">👨</span>
-                            <span>mit Herr Yoo</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="schedule-card">
-                    <div class="card-date">
-                        <div class="date-day">
-                            <span class="date-num">16</span>
-                            <span class="date-month">Feb</span>
-                        </div>
-                        <div class="date-info">
-                            <span class="date-weekday">월요일</span>
-                        </div>
-                        <span class="tag event">🎭 축제</span>
-                    </div>
-                    <h3 class="card-title">Rosenmontag</h3>
-                    <div class="card-details">
-                        <div class="detail-item">
-                            <span class="detail-icon">🎉</span>
-                            <span>독일 카니발 축제</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="schedule-card">
-                    <div class="card-date">
-                        <div class="date-day">
-                            <span class="date-num">17-20</span>
-                            <span class="date-month">Feb</span>
-                        </div>
-                        <div class="date-info">
-                            <span class="date-weekday">화-금</span>
-                        </div>
-                    </div>
-                    <h3 class="card-title">Remscheid 체류</h3>
-                    <div class="card-details">
-                        <div class="detail-item">
-                            <span class="detail-icon">🏠</span>
-                            <span>자유 일정</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="schedule-card">
-                    <div class="card-date">
-                        <div class="date-day">
-                            <span class="date-num">21</span>
-                            <span class="date-month">Feb</span>
-                        </div>
-                        <div class="date-info">
-                            <span class="date-weekday">토요일</span>
-                        </div>
-                    </div>
-                    <h3 class="card-title">Frankfurt 이동</h3>
-                    <div class="card-details">
-                        <div class="detail-item">
-                            <span class="detail-icon">👩</span>
-                            <span>mit Frau Im</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Copenhagen Section -->
-        <section class="city-section wedding">
-            <div class="city-header">
-                <div class="city-icon">🇩🇰</div>
-                <div class="city-info">
-                    <h2>Copenhagen</h2>
-                    <p class="city-period">2월 22일 - 25일 (4일) · 💍 Wedding</p>
-                </div>
-            </div>
-            <div class="schedule-grid">
-                <div class="schedule-card">
-                    <div class="card-date">
-                        <div class="date-day">
-                            <span class="date-num">22</span>
-                            <span class="date-month">Feb</span>
-                        </div>
-                        <div class="date-info">
-                            <span class="date-weekday">일요일</span>
-                        </div>
-                        <span class="tag flight">✈️ 이동</span>
-                    </div>
-                    <h3 class="card-title">코펜하겐 도착</h3>
-                    <div class="card-details">
-                        <div class="detail-item">
-                            <span class="detail-icon">✈️</span>
-                            <span>SK 676</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-icon">🕐</span>
-                            <span>15:15 출발</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="schedule-card">
-                    <div class="card-date">
-                        <div class="date-day">
-                            <span class="date-num">23</span>
-                            <span class="date-month">Feb</span>
-                        </div>
-                        <div class="date-info">
-                            <span class="date-weekday">월요일</span>
-                        </div>
-                        <span class="tag official">🏛️ 공식</span>
-                    </div>
-                    <h3 class="card-title">시청 서류 제출</h3>
-                    <div class="card-details">
-                        <div class="detail-item">
-                            <span class="detail-icon">📍</span>
-                            <span>코펜하겐 시청</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-icon">📝</span>
-                            <span>혼인신고 서류</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="schedule-card highlight">
-                    <div class="card-date">
-                        <div class="date-day">
-                            <span class="date-num">24</span>
-                            <span class="date-month">Feb</span>
-                        </div>
-                        <div class="date-info">
-                            <span class="date-weekday">화요일</span>
-                        </div>
-                    </div>
-                    <h3 class="card-title">💍 Wedding Day</h3>
-                    <div class="card-details">
-                        <div class="detail-item">
-                            <span class="detail-icon">🕐</span>
-                            <span>15:05 결혼식</span>
-                        </div>
-                    </div>
-                    <div class="wedding-banner">
-                        👰 THE BIG DAY 🤵
-                    </div>
-                </div>
-
-                <div class="schedule-card">
-                    <div class="card-date">
-                        <div class="date-day">
-                            <span class="date-num">25</span>
-                            <span class="date-month">Feb</span>
-                        </div>
-                        <div class="date-info">
-                            <span class="date-weekday">수요일</span>
-                        </div>
-                        <span class="tag official">📜 공식</span>
-                    </div>
-                    <h3 class="card-title">아포스티유 발급</h3>
-                    <div class="card-details">
-                        <div class="detail-item">
-                            <span class="detail-icon">🕐</span>
-                            <span>09:00 아포스티유</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-icon">✈️</span>
-                            <span>18:15 Frankfurt행</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Return Section -->
-        <section class="city-section">
-            <div class="city-header">
-                <div class="city-icon">🏠</div>
-                <div class="city-info">
-                    <h2>귀국</h2>
-                    <p class="city-period">2월 26일</p>
-                </div>
-            </div>
-            <div class="schedule-grid">
-                <div class="schedule-card">
-                    <div class="card-date">
-                        <div class="date-day">
-                            <span class="date-num">26</span>
-                            <span class="date-month">Feb</span>
-                        </div>
-                        <div class="date-info">
-                            <span class="date-weekday">목요일</span>
-                        </div>
-                        <span class="tag flight">✈️ 이동</span>
-                    </div>
-                    <h3 class="card-title">한국으로 귀국</h3>
-                    <div class="card-details">
-                        <div class="detail-item">
-                            <span class="detail-icon">🏛️</span>
-                            <span>10:30 Eschborn 시청</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-icon">✈️</span>
-                            <span>19:30 한국행 출발</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p class="footer-title">💕 보영 & 수진 💕</p>
-            <p>February 2026 · Germany & Denmark</p>
-        </div>
-    </footer>
-</body>
-</html>
+<!DOCTYPE html>                                                               
+  <html lang="ko">                                                              
+  <head>                                                                        
+      <meta charset="UTF-8">                                                    
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+      <title>보영이 & 수진이 혼인신고 여정</title>                              
+      <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist
+  /web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">    
+      <style>                                                                   
+          * {                                                                   
+              margin: 0;                                                        
+              padding: 0;                                                       
+              box-sizing: border-box;                                           
+          }                                                                     
+                                                                                
+          body {                                                                
+              font-family: 'Pretendard Variable', Pretendard, -apple-system,    
+  BlinkMacSystemFont, system-ui, Roboto, sans-serif;                            
+              background: #F5F7FA;                                              
+              min-height: 100vh;                                                
+              color: #1E3A5F;                                                   
+          }                                                                     
+                                                                                
+          /* Hero Section */                                                    
+          .hero {                                                               
+              background: #1E3A5F;                                              
+              padding: 80px 20px;                                               
+              text-align: center;                                               
+              position: relative;                                               
+              overflow: hidden;                                                 
+          }                                                                     
+                                                                                
+          .hero::before {                                                       
+              content: '';                                                      
+              position: absolute;                                               
+              top: 0;                                                           
+              left: 0;                                                          
+              right: 0;                                                         
+              bottom: 0;                                                        
+              background: url('https://upload.wikimedia.org/wikipedia/commons/th
+  umb/d/d0/K%C3%B8benhavns_R%C3%A5dhus_2013_%28cropped%29.jpg/1920px-K%C3%B8benh
+  avns_R%C3%A5dhus_2013_%28cropped%29.jpg') center bottom/cover no-repeat;      
+              filter: blur(3px);                                                
+              transform: scale(1.05);                                           
+          }                                                                     
+                                                                                
+          .hero::after {                                                        
+              content: '';                                                      
+              position: absolute;                                               
+              top: 0;                                                           
+              left: 0;                                                          
+              right: 0;                                                         
+              bottom: 0;                                                        
+              background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,        
+  rgba(0,0,0,0.5) 100%);                                                        
+          }                                                                     
+                                                                                
+          .hero-content {                                                       
+              position: relative;                                               
+              z-index: 1;                                                       
+              max-width: 800px;                                                 
+              margin: 0 auto;                                                   
+          }                                                                     
+                                                                                
+          .hero-badge {                                                         
+              display: inline-block;                                            
+              background: rgba(212, 168, 75, 0.2);                              
+              color: #D4A84B;                                                   
+              padding: 8px 20px;                                                
+              border-radius: 30px;                                              
+              font-size: 0.85rem;                                               
+              font-weight: 600;                                                 
+              margin-bottom: 24px;                                              
+              letter-spacing: 0.05em;                                           
+          }                                                                     
+                                                                                
+          .profile-image {                                                      
+              position: absolute;                                               
+              left: max(20px, calc(50% - 580px));                               
+              bottom: 80px;                                                     
+              width: 180px;                                                     
+              height: 180px;                                                    
+              border-radius: 50%;                                               
+              object-fit: cover;                                                
+              object-position: center 30%;                                      
+              border: 4px solid #D4A84B;                                        
+              box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);                        
+              z-index: 2;                                                       
+          }                                                                     
+                                                                                
+          .hero h1 {                                                            
+              font-size: 3rem;                                                  
+              font-weight: 700;                                                 
+              color: #FFFFFF;                                                   
+              margin-bottom: 16px;                                              
+              letter-spacing: -0.02em;                                          
+          }                                                                     
+                                                                                
+          .hero-subtitle {                                                      
+              font-size: 1.2rem;                                                
+              color: rgba(255, 255, 255, 0.8);                                  
+              margin-bottom: 40px;                                              
+          }                                                                     
+                                                                                
+          .hero-stats {                                                         
+              display: flex;                                                    
+              justify-content: center;                                          
+              gap: 50px;                                                        
+              flex-wrap: wrap;                                                  
+          }                                                                     
+                                                                                
+          .stat-item {                                                          
+              text-align: center;                                               
+          }                                                                     
+                                                                                
+          .stat-number {                                                        
+              font-size: 2.5rem;                                                
+              font-weight: 700;                                                 
+              color: #D4A84B;                                                   
+              display: block;                                                   
+          }                                                                     
+                                                                                
+          .stat-label {                                                         
+              font-size: 0.85rem;                                               
+              color: rgba(255, 255, 255, 0.6);                                  
+              text-transform: uppercase;                                        
+              letter-spacing: 0.1em;                                            
+          }                                                                     
+                                                                                
+          /* Route Overview */                                                  
+          .route-overview {                                                     
+              background: #FFFFFF;                                              
+              padding: 40px 20px;                                               
+              border-bottom: 1px solid rgba(30, 58, 95, 0.1);                   
+          }                                                                     
+                                                                                
+          .route-container {                                                    
+              max-width: 1200px;                                                
+              margin: 0 auto;                                                   
+              display: flex;                                                    
+              align-items: center;                                              
+              justify-content: center;                                          
+              gap: 28px;                                                        
+              flex-wrap: wrap;                                                  
+          }                                                                     
+                                                                                
+          .route-city {                                                         
+              display: flex;                                                    
+              align-items: center;                                              
+              gap: 14px;                                                        
+          }                                                                     
+                                                                                
+          .city-dot {                                                           
+              width: 16px;                                                      
+              height: 16px;                                                     
+              border-radius: 50%;                                               
+              background: #1E3A5F;                                              
+          }                                                                     
+                                                                                
+          .city-dot.highlight {                                                 
+              background: #D4A84B;                                              
+              box-shadow: 0 0 0 5px rgba(212, 168, 75, 0.2);                    
+          }                                                                     
+                                                                                
+          .city-name {                                                          
+              font-weight: 600;                                                 
+              font-size: 1.1rem;                                                
+          }                                                                     
+                                                                                
+          .city-date {                                                          
+              font-size: 0.95rem;                                               
+              color: #5A6A7A;                                                   
+          }                                                                     
+                                                                                
+          .route-arrow {                                                        
+              color: #D4A84B;                                                   
+              font-size: 1.5rem;                                                
+              font-weight: 600;                                                 
+          }                                                                     
+                                                                                
+          /* Main Content */                                                    
+          .main-content {                                                       
+              max-width: 1200px;                                                
+              margin: 0 auto;                                                   
+              padding: 60px 20px;                                               
+          }                                                                     
+                                                                                
+          /* City Section */                                                    
+          .city-section {                                                       
+              margin-bottom: 60px;                                              
+          }                                                                     
+                                                                                
+          .city-header {                                                        
+              display: flex;                                                    
+              align-items: center;                                              
+              gap: 16px;                                                        
+              margin-bottom: 30px;                                              
+              padding-bottom: 20px;                                             
+              border-bottom: 2px solid rgba(30, 58, 95, 0.1);                   
+          }                                                                     
+                                                                                
+          .city-icon {                                                          
+              width: 56px;                                                      
+              height: 56px;                                                     
+              background: linear-gradient(135deg, #1E3A5F, #2C4A6E);            
+              border-radius: 16px;                                              
+              display: flex;                                                    
+              align-items: center;                                              
+              justify-content: center;                                          
+              font-size: 1.5rem;                                                
+          }                                                                     
+                                                                                
+          .city-section.wedding .city-icon {                                    
+              background: linear-gradient(135deg, #D4A84B, #C49A3D);            
+          }                                                                     
+                                                                                
+          .city-info h2 {                                                       
+              font-size: 1.8rem;                                                
+              font-weight: 700;                                                 
+              color: #1E3A5F;                                                   
+              margin-bottom: 4px;                                               
+          }                                                                     
+                                                                                
+          .city-period {                                                        
+              font-size: 0.95rem;                                               
+              color: #5A6A7A;                                                   
+          }                                                                     
+                                                                                
+          /* Schedule Cards */                                                  
+          .schedule-grid {                                                      
+              display: grid;                                                    
+              grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));     
+              gap: 20px;                                                        
+          }                                                                     
+                                                                                
+          .schedule-card {                                                      
+              background: #FFFFFF;                                              
+              border-radius: 16px;                                              
+              padding: 24px;                                                    
+              box-shadow: 0 2px 12px rgba(30, 58, 95, 0.08);                    
+              border: 1px solid rgba(30, 58, 95, 0.06);                         
+              transition: all 0.3s ease;                                        
+          }                                                                     
+                                                                                
+          .schedule-card:hover {                                                
+              transform: translateY(-4px);                                      
+              box-shadow: 0 12px 40px rgba(30, 58, 95, 0.12);                   
+          }                                                                     
+                                                                                
+          .schedule-card.highlight {                                            
+              background: linear-gradient(135deg, #FFFBF0 0%, #FFF8E7 100%);    
+              border: 2px solid #D4A84B;                                        
+          }                                                                     
+                                                                                
+          .card-date {                                                          
+              display: flex;                                                    
+              align-items: center;                                              
+              gap: 12px;                                                        
+              margin-bottom: 16px;                                              
+          }                                                                     
+                                                                                
+          .date-day {                                                           
+              width: 48px;                                                      
+              height: 48px;                                                     
+              background: rgba(30, 58, 95, 0.08);                               
+              border-radius: 12px;                                              
+              display: flex;                                                    
+              flex-direction: column;                                           
+              align-items: center;                                              
+              justify-content: center;                                          
+          }                                                                     
+                                                                                
+          .schedule-card.highlight .date-day {                                  
+              background: #D4A84B;                                              
+              color: #FFFFFF;                                                   
+          }                                                                     
+                                                                                
+          .date-num {                                                           
+              font-size: 1.2rem;                                                
+              font-weight: 700;                                                 
+              line-height: 1;                                                   
+          }                                                                     
+                                                                                
+          .date-month {                                                         
+              font-size: 0.65rem;                                               
+              text-transform: uppercase;                                        
+              opacity: 0.7;                                                     
+          }                                                                     
+                                                                                
+          .date-info {                                                          
+              flex: 1;                                                          
+          }                                                                     
+                                                                                
+          .date-weekday {                                                       
+              font-size: 0.8rem;                                                
+              color: #5A6A7A;                                                   
+          }                                                                     
+                                                                                
+          .card-title {                                                         
+              font-size: 1.1rem;                                                
+              font-weight: 600;                                                 
+              color: #1E3A5F;                                                   
+              margin-bottom: 12px;                                              
+              display: flex;                                                    
+              align-items: center;                                              
+              gap: 8px;                                                         
+          }                                                                     
+                                                                                
+          .card-details {                                                       
+              display: flex;                                                    
+              flex-direction: column;                                           
+              gap: 8px;                                                         
+          }                                                                     
+                                                                                
+          .detail-item {                                                        
+              display: flex;                                                    
+              align-items: center;                                              
+              gap: 10px;                                                        
+              font-size: 0.9rem;                                                
+              color: #5A6A7A;                                                   
+          }                                                                     
+                                                                                
+          .detail-icon {                                                        
+              width: 20px;                                                      
+              text-align: center;                                               
+          }                                                                     
+                                                                                
+          .tag {                                                                
+              display: inline-block;                                            
+              padding: 4px 10px;                                                
+              border-radius: 6px;                                               
+              font-size: 0.75rem;                                               
+              font-weight: 600;                                                 
+          }                                                                     
+                                                                                
+          .tag.flight {                                                         
+              background: rgba(30, 58, 95, 0.1);                                
+              color: #1E3A5F;                                                   
+          }                                                                     
+                                                                                
+          .tag.official {                                                       
+              background: rgba(212, 168, 75, 0.15);                             
+              color: #8B6914;                                                   
+          }                                                                     
+                                                                                
+          .tag.event {                                                          
+              background: rgba(212, 168, 75, 0.2);                              
+              color: #8B6914;                                                   
+          }                                                                     
+                                                                                
+          /* Wedding Highlight */                                               
+          .wedding-banner {                                                     
+              background: linear-gradient(135deg, #D4A84B 0%, #C49A3D 100%);    
+              color: #1E3A5F;                                                   
+              text-align: center;                                               
+              padding: 16px;                                                    
+              border-radius: 12px;                                              
+              margin-top: 16px;                                                 
+              font-weight: 700;                                                 
+              font-size: 0.9rem;                                                
+          }                                                                     
+                                                                                
+          /* Footer */                                                          
+          .footer {                                                             
+              background: #1E3A5F;                                              
+              padding: 40px 20px;                                               
+              text-align: center;                                               
+          }                                                                     
+                                                                                
+          .footer-content {                                                     
+              max-width: 600px;                                                 
+              margin: 0 auto;                                                   
+          }                                                                     
+                                                                                
+          .footer p {                                                           
+              color: rgba(255, 255, 255, 0.6);                                  
+              font-size: 0.9rem;                                                
+          }                                                                     
+                                                                                
+          .footer-title {                                                       
+              color: #D4A84B;                                                   
+              font-size: 1.2rem;                                                
+              font-weight: 600;                                                 
+              margin-bottom: 8px;                                               
+          }                                                                     
+                                                                                
+          /* Responsive */                                                      
+          @media (max-width: 768px) {                                           
+              .hero {                                                           
+                  padding: 60px 20px;                                           
+              }                                                                 
+                                                                                
+              .profile-image {                                                  
+                  position: relative;                                           
+                  left: auto;                                                   
+                  bottom: auto;                                                 
+                  display: block;                                               
+                  margin: 0 auto 24px auto;                                     
+                  width: 120px;                                                 
+                  height: 120px;                                                
+              }                                                                 
+                                                                                
+              .hero h1 {                                                        
+                  font-size: 2.2rem;                                            
+              }                                                                 
+                                                                                
+              .hero-stats {                                                     
+                  gap: 30px;                                                    
+              }                                                                 
+                                                                                
+              .stat-number {                                                    
+                  font-size: 2rem;                                              
+              }                                                                 
+                                                                                
+              .route-container {                                                
+                  flex-direction: column;                                       
+                  gap: 15px;                                                    
+              }                                                                 
+                                                                                
+              .route-arrow {                                                    
+                  transform: rotate(90deg);                                     
+              }                                                                 
+                                                                                
+              .city-header {                                                    
+                  flex-direction: column;                                       
+                  text-align: center;                                           
+              }                                                                 
+                                                                                
+              .schedule-grid {                                                  
+                  grid-template-columns: 1fr;                                   
+              }                                                                 
+                                                                                
+              .main-content {                                                   
+                  padding: 40px 16px;                                           
+              }                                                                 
+          }                                                                     
+                                                                                
+          @media (max-width: 480px) {                                           
+              .hero h1 {                                                        
+                  font-size: 1.8rem;                                            
+              }                                                                 
+                                                                                
+              .hero-subtitle {                                                  
+                  font-size: 1rem;                                              
+              }                                                                 
+                                                                                
+              .city-info h2 {                                                   
+                  font-size: 1.4rem;                                            
+              }                                                                 
+          }                                                                     
+      </style>                                                                  
+  </head>                                                                       
+  <body>                                                                        
+      <!-- Hero Section -->                                                     
+      <section class="hero">                                                    
+          <img class="profile-image"                                            
+  src="https://raw.githubusercontent.com/Bochoi85/wedding-schedule/main/스크린
+   2026-01-19 오후 3.20.18.png" alt="보영 &amp; 수진">                          
+          <div class="hero-content">                                            
+              <span class="hero-badge">💒 Wedding Journey 2026</span>           
+              <h1>보영이 & 수진이</h1>                                          
+              <p class="hero-subtitle">독일 · 덴마크 혼인신고 여정</p>          
+                                                                                
+              <div class="hero-stats">                                          
+                  <div class="stat-item">                                       
+                      <span class="stat-number">15</span>                       
+                      <span class="stat-label">Days</span>                      
+                  </div>                                                        
+                  <div class="stat-item">                                       
+                      <span class="stat-number">3</span>                        
+                      <span class="stat-label">Cities</span>                    
+                  </div>                                                        
+                  <div class="stat-item">                                       
+                      <span class="stat-number">2</span>                        
+                      <span class="stat-label">Countries</span>                 
+                  </div>                                                        
+              </div>                                                            
+          </div>                                                                
+      </section>                                                                
+                                                                                
+      <!-- Route Overview -->                                                   
+      <section class="route-overview">                                          
+          <div class="route-container">                                         
+              <div class="route-city">                                          
+                  <div class="city-dot"></div>                                  
+                  <div>                                                         
+                      <div class="city-name">🇰🇷 Seoul</div>                     
+                      <div class="city-date">2.12 출발</div>                    
+                  </div>                                                        
+              </div>                                                            
+              <span class="route-arrow">→</span>                                
+              <div class="route-city">                                          
+                  <div class="city-dot"></div>                                  
+                  <div>                                                         
+                      <div class="city-name">🇩🇪 Frankfurt</div>                 
+                      <div class="city-date">2.12-13</div>                      
+                  </div>                                                        
+              </div>                                                            
+              <span class="route-arrow">→</span>                                
+              <div class="route-city">                                          
+                  <div class="city-dot"></div>                                  
+                  <div>                                                         
+                      <div class="city-name">🇩🇪 Remscheid</div>                 
+                      <div class="city-date">2.14-21</div>                      
+                  </div>                                                        
+              </div>                                                            
+              <span class="route-arrow">→</span>                                
+              <div class="route-city">                                          
+                  <div class="city-dot highlight"></div>                        
+                  <div>                                                         
+                      <div class="city-name">🇩🇰 Copenhagen</div>                
+                      <div class="city-date">2.22-25 💍</div>                   
+                  </div>                                                        
+              </div>                                                            
+              <span class="route-arrow">→</span>                                
+              <div class="route-city">                                          
+                  <div class="city-dot"></div>                                  
+                  <div>                                                         
+                      <div class="city-name">🇰🇷 Seoul</div>                     
+                      <div class="city-date">2.26 도착</div>                    
+                  </div>                                                        
+              </div>                                                            
+          </div>                                                                
+      </section>                                                                
+                                                                                
+      <!-- Main Content -->                                                     
+      <main class="main-content">                                               
+          <!-- Frankfurt Section -->                                            
+          <section class="city-section">                                        
+              <div class="city-header">                                         
+                  <div class="city-icon">🇩🇪</div>                               
+                  <div class="city-info">                                       
+                      <h2>Frankfurt</h2>                                        
+                      <p class="city-period">2월 12일 - 13일 (2일)</p>          
+                  </div>                                                        
+              </div>                                                            
+              <div class="schedule-grid">                                       
+                  <div class="schedule-card">                                   
+                      <div class="card-date">                                   
+                          <div class="date-day">                                
+                              <span class="date-num">12</span>                  
+                              <span class="date-month">Feb</span>               
+                          </div>                                                
+                          <div class="date-info">                               
+                              <span class="date-weekday">목요일</span>          
+                          </div>                                                
+                          <span class="tag flight">✈️ 이동</span>               
+                      </div>                                                    
+                      <h3 class="card-title">독일 도착</h3>                     
+                      <div class="card-details">                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">🛫</span>               
+                              <span>ICN → FRA</span>                            
+                          </div>                                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">🕐</span>               
+                              <span>현지 도착 17:20</span>                      
+                          </div>                                                
+                      </div>                                                    
+                  </div>                                                        
+                                                                                
+                  <div class="schedule-card">                                   
+                      <div class="card-date">                                   
+                          <div class="date-day">                                
+                              <span class="date-num">13</span>                  
+                              <span class="date-month">Feb</span>               
+                          </div>                                                
+                          <div class="date-info">                               
+                              <span class="date-weekday">금요일</span>          
+                          </div>                                                
+                          <span class="tag official">🏛️ 공식</span>             
+                      </div>                                                    
+                      <h3 class="card-title">영사관 방문</h3>                   
+                      <div class="card-details">                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">📍</span>               
+                              <span>프랑크푸르트 영사관</span>                  
+                          </div>                                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">🕐</span>               
+                              <span>11:00</span>                                
+                          </div>                                                
+                      </div>                                                    
+                  </div>                                                        
+              </div>                                                            
+          </section>                                                            
+                                                                                
+          <!-- Remscheid Section -->                                            
+          <section class="city-section">                                        
+              <div class="city-header">                                         
+                  <div class="city-icon">🏘️</div>                               
+                  <div class="city-info">                                       
+                      <h2>Remscheid</h2>                                        
+                      <p class="city-period">2월 14일 - 21일 (8일)</p>          
+                  </div>                                                        
+              </div>                                                            
+              <div class="schedule-grid">                                       
+                  <div class="schedule-card">                                   
+                      <div class="card-date">                                   
+                          <div class="date-day">                                
+                              <span class="date-num">14</span>                  
+                              <span class="date-month">Feb</span>               
+                          </div>                                                
+                          <div class="date-info">                               
+                              <span class="date-weekday">토요일</span>          
+                          </div>                                                
+                      </div>                                                    
+                      <h3 class="card-title">💕 Remscheid 이동</h3>             
+                      <div class="card-details">                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">👨</span>               
+                              <span>mit Herr Yoo</span>                         
+                          </div>                                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">💝</span>               
+                              <span>발렌타인데이</span>                         
+                          </div>                                                
+                      </div>                                                    
+                  </div>                                                        
+                                                                                
+                  <div class="schedule-card">                                   
+                      <div class="card-date">                                   
+                          <div class="date-day">                                
+                              <span class="date-num">15</span>                  
+                              <span class="date-month">Feb</span>               
+                          </div>                                                
+                          <div class="date-info">                               
+                              <span class="date-weekday">일요일</span>          
+                          </div>                                                
+                      </div>                                                    
+                      <h3 class="card-title">Remscheid 체류</h3>                
+                      <div class="card-details">                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">🏠</span>               
+                              <span>자유 일정</span>                            
+                          </div>                                                
+                      </div>                                                    
+                  </div>                                                        
+                                                                                
+                  <div class="schedule-card">                                   
+                      <div class="card-date">                                   
+                          <div class="date-day">                                
+                              <span class="date-num">16</span>                  
+                              <span class="date-month">Feb</span>               
+                          </div>                                                
+                          <div class="date-info">                               
+                              <span class="date-weekday">월요일</span>          
+                          </div>                                                
+                          <span class="tag event">🎭 축제</span>                
+                      </div>                                                    
+                      <h3 class="card-title">Rosenmontag</h3>                   
+                      <div class="card-details">                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">🎉</span>               
+                              <span>독일 카니발 축제</span>                     
+                          </div>                                                
+                      </div>                                                    
+                  </div>                                                        
+                                                                                
+                  <div class="schedule-card">                                   
+                      <div class="card-date">                                   
+                          <div class="date-day">                                
+                              <span class="date-num">17-20</span>               
+                              <span class="date-month">Feb</span>               
+                          </div>                                                
+                          <div class="date-info">                               
+                              <span class="date-weekday">화-금</span>           
+                          </div>                                                
+                      </div>                                                    
+                      <h3 class="card-title">Remscheid 체류</h3>                
+                      <div class="card-details">                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">🏠</span>               
+                              <span>자유 일정</span>                            
+                          </div>                                                
+                      </div>                                                    
+                  </div>                                                        
+                                                                                
+                  <div class="schedule-card">                                   
+                      <div class="card-date">                                   
+                          <div class="date-day">                                
+                              <span class="date-num">21</span>                  
+                              <span class="date-month">Feb</span>               
+                          </div>                                                
+                          <div class="date-info">                               
+                              <span class="date-weekday">토요일</span>          
+                          </div>                                                
+                      </div>                                                    
+                      <h3 class="card-title">Frankfurt 이동</h3>                
+                      <div class="card-details">                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">👩</span>               
+                              <span>mit Frau Im</span>                          
+                          </div>                                                
+                      </div>                                                    
+                  </div>                                                        
+              </div>                                                            
+          </section>                                                            
+                                                                                
+          <!-- Copenhagen Section -->                                           
+          <section class="city-section wedding">                                
+              <div class="city-header">                                         
+                  <div class="city-icon">🇩🇰</div>                               
+                  <div class="city-info">                                       
+                      <h2>Copenhagen</h2>                                       
+                      <p class="city-period">2월 22일 - 25일 (4일) · 💍         
+  Wedding</p>                                                                   
+                  </div>                                                        
+              </div>                                                            
+              <div class="schedule-grid">                                       
+                  <div class="schedule-card">                                   
+                      <div class="card-date">                                   
+                          <div class="date-day">                                
+                              <span class="date-num">22</span>                  
+                              <span class="date-month">Feb</span>               
+                          </div>                                                
+                          <div class="date-info">                               
+                              <span class="date-weekday">일요일</span>          
+                          </div>                                                
+                          <span class="tag flight">✈️ 이동</span>               
+                      </div>                                                    
+                      <h3 class="card-title">코펜하겐 도착</h3>                 
+                      <div class="card-details">                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">✈️</span>               
+                              <span>SK 676</span>                               
+                          </div>                                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">🕐</span>               
+                              <span>15:15 출발</span>                           
+                          </div>                                                
+                      </div>                                                    
+                  </div>                                                        
+                                                                                
+                  <div class="schedule-card">                                   
+                      <div class="card-date">                                   
+                          <div class="date-day">                                
+                              <span class="date-num">23</span>                  
+                              <span class="date-month">Feb</span>               
+                          </div>                                                
+                          <div class="date-info">                               
+                              <span class="date-weekday">월요일</span>          
+                          </div>                                                
+                          <span class="tag official">🏛️ 공식</span>             
+                      </div>                                                    
+                      <h3 class="card-title">시청 서류 제출</h3>                
+                      <div class="card-details">                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">📍</span>               
+                              <span>코펜하겐 시청</span>                        
+                          </div>                                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">📝</span>               
+                              <span>혼인신고 서류</span>                        
+                          </div>                                                
+                      </div>                                                    
+                  </div>                                                        
+                                                                                
+                  <div class="schedule-card highlight">                         
+                      <div class="card-date">                                   
+                          <div class="date-day">                                
+                              <span class="date-num">24</span>                  
+                              <span class="date-month">Feb</span>               
+                          </div>                                                
+                          <div class="date-info">                               
+                              <span class="date-weekday">화요일</span>          
+                          </div>                                                
+                      </div>                                                    
+                      <h3 class="card-title">💍 Wedding Day</h3>                
+                      <div class="card-details">                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">🕐</span>               
+                              <span>15:05 결혼식</span>                         
+                          </div>                                                
+                      </div>                                                    
+                      <div class="wedding-banner">                              
+                          👰 THE BIG DAY 🤵                                     
+                      </div>                                                    
+                  </div>                                                        
+                                                                                
+                  <div class="schedule-card">                                   
+                      <div class="card-date">                                   
+                          <div class="date-day">                                
+                              <span class="date-num">25</span>                  
+                              <span class="date-month">Feb</span>               
+                          </div>                                                
+                          <div class="date-info">                               
+                              <span class="date-weekday">수요일</span>          
+                          </div>                                                
+                          <span class="tag official">📜 공식</span>             
+                      </div>                                                    
+                      <h3 class="card-title">아포스티유 발급</h3>               
+                      <div class="card-details">                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">🕐</span>               
+                              <span>09:00 아포스티유</span>                     
+                          </div>                                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">✈️</span>               
+                              <span>18:15 Frankfurt행</span>                    
+                          </div>                                                
+                      </div>                                                    
+                  </div>                                                        
+              </div>                                                            
+          </section>                                                            
+                                                                                
+          <!-- Return Section -->                                               
+          <section class="city-section">                                        
+              <div class="city-header">                                         
+                  <div class="city-icon">🏠</div>                               
+                  <div class="city-info">                                       
+                      <h2>귀국</h2>                                             
+                      <p class="city-period">2월 26일</p>                       
+                  </div>                                                        
+              </div>                                                            
+              <div class="schedule-grid">                                       
+                  <div class="schedule-card">                                   
+                      <div class="card-date">                                   
+                          <div class="date-day">                                
+                              <span class="date-num">26</span>                  
+                              <span class="date-month">Feb</span>               
+                          </div>                                                
+                          <div class="date-info">                               
+                              <span class="date-weekday">목요일</span>          
+                          </div>                                                
+                          <span class="tag flight">✈️ 이동</span>               
+                      </div>                                                    
+                      <h3 class="card-title">한국으로 귀국</h3>                 
+                      <div class="card-details">                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">🏛️</span>               
+                              <span>10:30 Eschborn 시청</span>                  
+                          </div>                                                
+                          <div class="detail-item">                             
+                              <span class="detail-icon">✈️</span>               
+                              <span>19:30 한국행 출발</span>                    
+                          </div>                                                
+                      </div>                                                    
+                  </div>                                                        
+              </div>                                                            
+          </section>                                                            
+      </main>                                                                   
+                                                                                
+      <!-- Footer -->                                                           
+      <footer class="footer">                                                   
+          <div class="footer-content">                                          
+              <p class="footer-title">💕 보영 & 수진 💕</p>                     
+              <p>February 2026 · Germany & Denmark</p>                          
+          </div>                                                                
+      </footer>                                                                 
+  </body>                                                                       
+  </html>                   
